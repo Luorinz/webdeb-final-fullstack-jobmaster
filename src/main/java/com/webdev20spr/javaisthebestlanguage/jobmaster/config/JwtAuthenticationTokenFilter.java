@@ -35,7 +35,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (auth_token != null && auth_token.length() != 0 && auth_token.startsWith(auth_token_start)) {
             auth_token = auth_token.substring(auth_token_start.length());
         } else {
-            // 不按规范,不允许通过验证
             auth_token = null;
         }
 

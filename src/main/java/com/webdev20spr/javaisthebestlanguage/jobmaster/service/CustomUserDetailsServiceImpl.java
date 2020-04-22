@@ -9,16 +9,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-/**
- * 登陆身份认证
- * @author: JoeTao
- * createAt: 2018/9/14
- */
+
 @Component(value="CustomUserDetailsService")
 public class CustomUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
-
 
 
     @Override

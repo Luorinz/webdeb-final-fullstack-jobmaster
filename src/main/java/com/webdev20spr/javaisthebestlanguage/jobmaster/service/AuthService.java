@@ -54,14 +54,10 @@ public class AuthService{
     }
 
     public ResponseUserToken login(String username, String password) {
-        //用户验证
         final Authentication authentication = authenticate(username, password);
-        //存储认证信息
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        //生成token
         final JwtUserDetail userDetail = (JwtUserDetail) authentication.getPrincipal();
         final String token = jwtTokenUtil.generateAccessToken(userDetail);
-        //存储token
         jwtTokenUtil.putToken(username, token);
         return new ResponseUserToken(token, userDetail);
 
@@ -73,16 +69,7 @@ public class AuthService{
         jwtTokenUtil.deleteToken(userName);
     }
 
-//    public ResponseUserToken refresh(String oldToken) {
-//        String token = oldToken.substring(tokenHead.length());
-//        String username = jwtTokenUtil.getUsernameFromToken(token);
-//        UserDetail userDetail = (UserDetail) userDetailsService.loadUserByUsername(username);
-//        if (jwtTokenUtil.canTokenBeRefreshed(token, userDetail.getLastPasswordResetDate())){
-//            token =  jwtTokenUtil.refreshToken(token);
-//            return new ResponseUserToken(token, userDetail);
-//        }
-//        return null;
-//    }
+
 
     public JwtUserDetail getUserByToken(String token) {
         token = token.substring(tokenHead.length());
@@ -91,13 +78,11 @@ public class AuthService{
 
     private Authentication authenticate(String username, String password) {
         try {
-            //该方法会去调用userDetailsService.loadUserByUsername()去验证用户名和密码，如果正确，则存储该用户名密码到“security 的 context中”
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
             System.out.println("token generated " + token);
             Authentication res = authenticationManager.authenticate(token);
             return res;
         } catch (DisabledException | BadCredentialsException e) {
-//            throw new CustomException(ResultJson.failure(ResultCode.LOGIN_ERROR, e.getMessage()));
             throw new RuntimeException("Authentication error");
         }
     }
