@@ -37,7 +37,7 @@ public class UserService {
         }
     }
 
-    public List<Job> getJobsByUsername(String username) {
+    public List<Job> getSavedJobsByUsername(String username) {
         List<Job> ret = new ArrayList<>();
         User user = userRepository.findByUsername(username);
         if (user == null) return ret;
@@ -71,6 +71,21 @@ public class UserService {
             if (!postedJobs.contains(jobId)) {
                 postedJobs.add(jobId);
             }
+            user.setPostedJobs(postedJobs);
+            userRepository.save(user);
+        }
+    }
+
+    public void deleteJob(String jobId) {
+        List<User> users = userRepository.findAll();
+        for (User user: users) {
+            List<String> savedJobs = new ArrayList<>();
+            if (user.getSavedJobs() != null) savedJobs = user.getSavedJobs();
+            savedJobs.remove(jobId);
+            user.setSavedJobs(savedJobs);
+            List<String> postedJobs = new ArrayList<>();
+            if (user.getPostedJobs() != null) postedJobs = user.getPostedJobs();
+            postedJobs.remove(jobId);
             user.setPostedJobs(postedJobs);
             userRepository.save(user);
         }

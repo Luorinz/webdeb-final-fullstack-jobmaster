@@ -64,4 +64,8 @@ public class JobService {
             jobRepository.save(job);
         }
     }
+
+    public void deleteJob(String jobId) {
+        jobRepository.deleteJobById(jobId);
+    }
 }

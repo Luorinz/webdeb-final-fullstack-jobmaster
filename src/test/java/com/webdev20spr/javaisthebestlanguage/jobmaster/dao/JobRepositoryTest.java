@@ -41,4 +41,9 @@ public class JobRepositoryTest {
     public void testInsertJob() {
 
     }
+
+    @Test
+    public void testRemoveJob() {
+//        jobRepository.deleteJobById("5ea0c858a4283469016068e4");
+    }
 }

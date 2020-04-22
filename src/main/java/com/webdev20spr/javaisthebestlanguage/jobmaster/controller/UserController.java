@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,12 +37,12 @@ public class UserController {
     }
 
     @GetMapping("/jobs")
-    public List<Job> getUserJobs() {
+    public List<Job> getCurrentUserSavedJobs() {
         System.out.println("UserController -> getUserJobs: ");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
-        return userService.getJobsByUsername(username);
+        return userService.getSavedJobsByUsername(username);
     }
 
     @PutMapping("/update")
@@ -65,5 +64,14 @@ public class UserController {
         jobService.markJobAsUnderReviewd(job.getId());
         userService.postJob(username, job.getId());
         return job;
+    }
+
+    @DeleteMapping("/delete/{jobId}")
+    @PreAuthorize(value = "hasRole('ADV_USER') || hasRole('ADMIN')")
+    public String deleteJob(@PathVariable(name = "jobId") String jobId) {
+        System.out.println("UserController -> deleteJob: " + jobId);
+        jobService.deleteJob(jobId);
+        userService.deleteJob(jobId);
+        return "deleted";
     }
 }

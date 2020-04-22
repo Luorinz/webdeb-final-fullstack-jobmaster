@@ -22,4 +22,6 @@ public interface JobRepository extends MongoRepository<Job, String> {
 
     @Query(value = "{$text:{$search:\"$regex:?0\"}}")
     List<Job> searchJob(String keyword);
+
+    void deleteJobById(String id);
 }
