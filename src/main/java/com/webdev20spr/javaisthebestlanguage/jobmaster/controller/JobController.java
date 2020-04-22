@@ -4,6 +4,7 @@ import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.JobService;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,10 +45,6 @@ public class JobController {
     }
 
 
-    //    @GetMapping("/get/{userId}")
-//    public List<Job> searchAPIJobs(@PathVariable(name = "userId") String userId) {
-//        return
-//    }
 
 
 

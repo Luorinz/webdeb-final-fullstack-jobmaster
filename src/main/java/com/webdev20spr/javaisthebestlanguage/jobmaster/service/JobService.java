@@ -41,7 +41,7 @@ public class JobService {
         return jobRepository.findJobById(jobId);
     }
 
-    public Job addJob(Job job) {
+    public Job postJob(Job job) {
         return jobRepository.save(job);
     }
 

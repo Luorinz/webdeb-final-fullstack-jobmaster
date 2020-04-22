@@ -1,6 +1,7 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.controller;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.service.JobService;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +22,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JobService jobService;
 
 
     @PostMapping("/{jobId}")
@@ -48,5 +52,18 @@ public class UserController {
         System.out.println("UserController -> updateUserRole");
         userService.updateUserRole(username, role);
         return "updated";
+    }
+
+    @PostMapping("/post")
+    @PreAuthorize(value = "hasRole('ADV_USER') || hasRole('ADMIN')")
+    public Job postJob(@RequestBody Job jobRequest) {
+        System.out.println("UserController -> postJob: " + jobRequest);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        Job job = jobService.postJob(jobRequest);
+        jobService.markJobAsUnderReviewd(job.getId());
+        userService.postJob(username, job.getId());
+        return job;
     }
 }

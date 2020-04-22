@@ -62,4 +62,17 @@ public class UserService {
         }
 
     }
+
+    public void postJob(String username, String jobId) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            List<String> postedJobs = new ArrayList<>();
+            if (user.getPostedJobs() != null) postedJobs = user.getPostedJobs();
+            if (!postedJobs.contains(jobId)) {
+                postedJobs.add(jobId);
+            }
+            user.setPostedJobs(postedJobs);
+            userRepository.save(user);
+        }
+    }
 }
