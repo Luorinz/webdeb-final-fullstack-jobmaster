@@ -31,8 +31,9 @@ public class UserServiceTest {
     @Test
     public void testGetJobsByUsername() {
         List<Job> jobs = userService.getJobsByUsername("test");
+        System.out.println(jobs.size());
         for (Job job: jobs) {
-            System.out.println(jobs);
+            System.out.println(job);
         }
 
     }

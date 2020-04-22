@@ -16,16 +16,18 @@ public class JwtUserDetail implements UserDetails {
 
     private String username;
     private String password;
+    private String email;
     private String role;
 
     public JwtUserDetail(String username) {
         this.username = username;
     }
 
-    public JwtUserDetail(String username, String password, String role) {
+    public JwtUserDetail(String username, String password, String email, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 
     public JwtUserDetail(User user) {
@@ -37,6 +39,12 @@ public class JwtUserDetail implements UserDetails {
     public JwtUserDetail(String username, String role) {
         this.username = username;
         this.role = role;
+    }
+
+    public JwtUserDetail(String username, String email, String role) {
+        this.username = username;
+        this.role = role;
+        this.email = email;
     }
 
     @Override
@@ -91,5 +99,13 @@ public class JwtUserDetail implements UserDetails {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

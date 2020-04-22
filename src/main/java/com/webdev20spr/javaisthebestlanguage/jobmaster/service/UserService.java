@@ -43,13 +43,23 @@ public class UserService {
         if (user == null) return ret;
         List<String> jobIds = user.getSavedJobs();
         if (jobIds == null) return ret;
-        for (String jobId: jobIds) {
+        for (String jobId : jobIds) {
             Job job = jobRepository.findJobById(jobId);
             if (job != null) {
                 ret.add(job);
             }
         }
+
         return ret;
+
+    }
+
+    public void updateUserRole(String username, String role) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setRole(role);
+            userRepository.save(user);
+        }
 
     }
 }

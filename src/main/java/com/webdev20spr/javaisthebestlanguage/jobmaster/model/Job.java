@@ -1,5 +1,6 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -25,6 +26,8 @@ public class Job {
     private Object company;
     private Object category;
     private Location location;
+
+    private Boolean underReview;
 
 
 

@@ -3,6 +3,7 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.controller;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,7 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/save/{jobId}")
+    @PostMapping("/{jobId}")
     public String saveJob(@PathVariable(name = "jobId") String jobId) {
         System.out.println("UserController -> saveJob: " + jobId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,5 +40,13 @@ public class UserController {
         String username = authentication.getName();
         if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
         return userService.getJobsByUsername(username);
+    }
+
+    @PutMapping("/update")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public String updateUserRole(@RequestParam(name = "username") String username,@RequestParam(name = "role") String role) {
+        System.out.println("UserController -> updateUserRole");
+        userService.updateUserRole(username, role);
+        return "updated";
     }
 }

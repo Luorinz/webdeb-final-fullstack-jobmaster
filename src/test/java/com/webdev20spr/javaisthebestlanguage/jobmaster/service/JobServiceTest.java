@@ -2,6 +2,7 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.APIResponse;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,15 @@ public class JobServiceTest {
         }
     }
 
-    @Test
-    public void testGetJobsByUsername() {
 
+
+    @Test
+    public void testMarkJobAsReviewedOrUnreviewed() {
+        jobService.markJobAsUnderReviewd("1522485004");
+        Job job = jobService.getJob("1522485004");
+        Assert.assertTrue(job.getUnderReview());
+        jobService.markJobAsReviewdPassd("1522485004");
+        job = jobService.getJob("1522485004");
+        Assert.assertFalse(job.getUnderReview());
     }
 }

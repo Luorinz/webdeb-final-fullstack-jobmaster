@@ -38,6 +38,11 @@ public class JobController {
         return jobService.getJobsFromAPI(keyword);
     }
 
+    @GetMapping("/search/{jobId}")
+    public Job getJob(@PathVariable(name = "jobId") String jobId) {
+        return jobService.getJob(jobId);
+    }
+
 
     //    @GetMapping("/get/{userId}")
 //    public List<Job> searchAPIJobs(@PathVariable(name = "userId") String userId) {

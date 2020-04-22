@@ -37,11 +37,31 @@ public class JobService {
         return response.getBody().getResults();
     }
 
+    public Job getJob(String jobId) {
+        return jobRepository.findJobById(jobId);
+    }
+
     public Job addJob(Job job) {
         return jobRepository.save(job);
     }
 
     public List<Job> searchLocalJobs(String keyword) {
         return jobRepository.searchJob(keyword);
+    }
+
+    public void markJobAsUnderReviewd(String jobId) {
+        Job job = jobRepository.findJobById(jobId);
+        if (job != null) {
+            job.setUnderReview(true);
+            jobRepository.save(job);
+        }
+    }
+
+    public void markJobAsReviewdPassd(String jobId) {
+        Job job = jobRepository.findJobById(jobId);
+        if (job != null) {
+            job.setUnderReview(false);
+            jobRepository.save(job);
+        }
     }
 }

@@ -36,6 +36,7 @@ public class User {
         this.username = userDetail.getUsername();
         this.password = userDetail.getPassword();
         this.role = userDetail.getRole();
+        this.email = userDetail.getEmail();
     }
 
     public User() {
