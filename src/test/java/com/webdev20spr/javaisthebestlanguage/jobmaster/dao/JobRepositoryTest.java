@@ -35,4 +35,10 @@ public class JobRepositoryTest {
         addJob();
         jobRepository.findAll();
     }
+
+
+    @Test
+    public void testInsertJob() {
+
+    }
 }

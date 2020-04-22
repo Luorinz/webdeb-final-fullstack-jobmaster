@@ -3,6 +3,7 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.dao;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
  */
 @Repository
 public interface JobRepository extends MongoRepository<Job, String> {
-    public List<Job> findAll();
-
+    List<Job> findAll();
+    Job insert(Job job);
+    @Query(value="{$text:{$search:\"$regex:?0\"}}")
+    List<Job> searchJob(String keyword);
 }

@@ -2,25 +2,19 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.controller;
 
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.JwtUserDetail;
-import com.webdev20spr.javaisthebestlanguage.jobmaster.model.ResponseUserToken;
-import com.webdev20spr.javaisthebestlanguage.jobmaster.model.UserRequest;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.ResponseUserToken;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.request.UserRequest;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
-/**
- * @author JoeTao
- * createAt: 2018/9/17
- */
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/auth")
 public class AuthController {
     @Value("${jwt.header}")
     private String tokenHeader;

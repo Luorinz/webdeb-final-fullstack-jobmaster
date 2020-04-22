@@ -1,5 +1,6 @@
-package com.webdev20spr.javaisthebestlanguage.jobmaster.model;
+package com.webdev20spr.javaisthebestlanguage.jobmaster.model.response;
 
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import lombok.Data;
 
 import java.util.List;

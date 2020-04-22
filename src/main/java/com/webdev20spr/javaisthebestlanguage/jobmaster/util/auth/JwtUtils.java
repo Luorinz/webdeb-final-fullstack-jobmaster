@@ -30,8 +30,8 @@ public class JwtUtils {
     @Value("${jwt.expiration}")
     private Long access_token_expiration;
 
-    @Value("${jwt.expiration}")
-    private Long refresh_token_expiration;
+//    @Value("${jwt.expiration}")
+//    private Long refresh_token_expiration;
 
     private final SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.HS256;
 

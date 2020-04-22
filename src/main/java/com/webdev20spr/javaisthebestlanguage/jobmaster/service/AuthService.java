@@ -2,14 +2,13 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.UserRepository;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.JwtUserDetail;
-import com.webdev20spr.javaisthebestlanguage.jobmaster.model.ResponseUserToken;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.ResponseUserToken;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.User;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.util.auth.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.*;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,8 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.regex.PatternSyntaxException;
 
 
 @Service

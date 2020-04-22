@@ -1,4 +1,4 @@
-package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
+package com.webdev20spr.javaisthebestlanguage.jobmaster.service.impl;
 
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.UserRepository;

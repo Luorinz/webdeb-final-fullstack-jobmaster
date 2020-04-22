@@ -1,6 +1,6 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
 
-import com.webdev20spr.javaisthebestlanguage.jobmaster.model.APIResponse;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.APIResponse;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author Anda Luo
@@ -40,4 +38,11 @@ public class JobServiceTest {
         System.out.println(jobs.size());
     }
 
+    @Test
+    public void testSearchLocalJobsByKeyword() {
+        List<Job> jobs = jobService.searchLocalJobs("West");
+        for (Job job : jobs) {
+            System.out.println(job);
+        }
+    }
 }

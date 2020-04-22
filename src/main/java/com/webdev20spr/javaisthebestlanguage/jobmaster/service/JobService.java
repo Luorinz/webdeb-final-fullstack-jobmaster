@@ -1,16 +1,13 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.JobRepository;
-import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.UserRepository;
-import com.webdev20spr.javaisthebestlanguage.jobmaster.model.APIResponse;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.APIResponse;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,5 +33,13 @@ public class JobService {
             return new ArrayList<>();
         }
         return response.getBody().getResults();
+    }
+
+    public Job addJob(Job job) {
+        return jobRepository.insert(job);
+    }
+
+    public List<Job> searchLocalJobs(String keyword) {
+        return jobRepository.searchJob(keyword);
     }
 }

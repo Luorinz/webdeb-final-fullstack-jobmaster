@@ -1,4 +1,4 @@
-package com.webdev20spr.javaisthebestlanguage.jobmaster.model;
+package com.webdev20spr.javaisthebestlanguage.jobmaster.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
