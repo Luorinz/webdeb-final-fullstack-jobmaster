@@ -22,4 +22,10 @@ public class UserRepositoryTest {
     public void testGetUserByUsername() {
         System.out.println(userRepository.findByUsername("user1"));
     }
+
+    @Test
+    public void testInsertUser() {
+//        User user = new User();
+//        userRepository.save(user);
+    }
 }

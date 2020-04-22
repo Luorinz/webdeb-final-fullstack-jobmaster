@@ -25,8 +25,6 @@ public class JobServiceTest {
     @Autowired
     private JobService jobService;
 
-//    @Autowired
-//    private RestTemplate restTemplate;
 
     @Test
     public void testGetJobsFromDatabase() {
@@ -38,6 +36,7 @@ public class JobServiceTest {
     @Test
     public void testGetJobsFromAPI() {
         List<Job> jobs = jobService.getJobsFromAPI("Software Engineer");
+        System.out.println(jobs.get(5));
         System.out.println(jobs.size());
     }
 

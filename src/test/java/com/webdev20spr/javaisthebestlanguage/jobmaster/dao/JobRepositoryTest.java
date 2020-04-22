@@ -26,7 +26,6 @@ public class JobRepositoryTest {
         Job job = new Job();
         job.setTitle("testJob");
 //        job.setCompany("testCompany");
-        job.setCreateTime(new Date());
         job.setDescription("test");
         jobRepository.save(job);
     }

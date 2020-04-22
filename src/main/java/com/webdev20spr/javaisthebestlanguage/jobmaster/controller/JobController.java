@@ -25,10 +25,12 @@ import java.util.List;
 public class JobController {
     @Autowired
     private JobService jobService;
+
     @GetMapping("/localjob")
     public List<Job> getLocalJobs() {
         return jobService.getJobsFromDatabase();
     }
+
     @GetMapping("/apijob/{keyword}")
     public List<Job> getAPIJobs(@PathVariable(name = "keyword") String keyword) {
         return jobService.getJobsFromAPI(keyword);
