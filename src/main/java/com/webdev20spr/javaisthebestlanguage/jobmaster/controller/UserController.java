@@ -96,4 +96,24 @@ public class UserController {
         userService.reviewJob(username, jobId);
         return "under reviewed";
     }
+
+    @GetMapping("/review/jobs")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public List<Job> getReviewedJobs() {
+        System.out.println("UserController -> getReviewedJobs: ");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        return userService.getReviewedJobs(username);
+    }
+
+    @GetMapping("/post/jobs")
+    @PreAuthorize(value = "hasRole('ADV_USER') || hasRole('ADMIN')")
+    public List<Job> getPostedJobs() {
+        System.out.println("UserController -> getPostedJobs: ");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        return userService.getPostedJobs(username);
+    }
 }

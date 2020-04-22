@@ -127,4 +127,32 @@ public class UserService {
             jobRepository.save(job);
         }
     }
+
+    public List<Job> getReviewedJobs(String username) {
+        User user = userRepository.findByUsername(username);
+        List<Job> ret = new ArrayList<>();
+        if (user != null) {
+            List<String> jobIds = user.getReviewedJobs();
+            if (jobIds == null) return ret;
+            for (String jobId: jobIds) {
+                Job job = jobRepository.findJobById(jobId);
+                ret.add(job);
+            }
+        }
+        return ret;
+    }
+
+    public List<Job> getPostedJobs(String username) {
+        User user = userRepository.findByUsername(username);
+        List<Job> ret = new ArrayList<>();
+        if (user != null) {
+            List<String> jobIds = user.getPostedJobs();
+            if (jobIds == null) return ret;
+            for (String jobId: jobIds) {
+                Job job = jobRepository.findJobById(jobId);
+                ret.add(job);
+            }
+        }
+        return ret;
+    }
 }
