@@ -49,22 +49,6 @@ public class JobService {
         return jobRepository.searchJob(keyword);
     }
 
-    public void markJobAsUnderReviewd(String jobId) {
-        Job job = jobRepository.findJobById(jobId);
-        if (job != null) {
-            job.setUnderReview(true);
-            jobRepository.save(job);
-        }
-    }
-
-    public void markJobAsReviewdPassd(String jobId) {
-        Job job = jobRepository.findJobById(jobId);
-        if (job != null) {
-            job.setUnderReview(false);
-            jobRepository.save(job);
-        }
-    }
-
     public void deleteJob(String jobId) {
         jobRepository.deleteJobById(jobId);
     }

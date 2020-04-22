@@ -32,6 +32,7 @@ public class User {
 
     private List<String> savedJobs;
     private List<String> postedJobs;
+    private List<String> reviewedJobs;
 
     public User(JwtUserDetail userDetail) {
         this.username = userDetail.getUsername();

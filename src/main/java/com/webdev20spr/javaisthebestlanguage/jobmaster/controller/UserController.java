@@ -61,8 +61,8 @@ public class UserController {
         String username = authentication.getName();
         if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
         Job job = jobService.postJob(jobRequest);
-        jobService.markJobAsUnderReviewd(job.getId());
         userService.postJob(username, job.getId());
+        userService.reviewJob(username, job.getId());
         return job;
     }
 
@@ -73,5 +73,27 @@ public class UserController {
         jobService.deleteJob(jobId);
         userService.deleteJob(jobId);
         return "deleted";
+    }
+
+    @PutMapping("/pass/{jobId}")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public String reviewJobPass(@PathVariable(name = "jobId") String jobId) {
+        System.out.println("UserController -> reviewJobPass: " + jobId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        userService.reviewJobPass(username, jobId);
+        return "passed";
+    }
+
+    @PutMapping("/review/{jobId}")
+    @PreAuthorize(value = "hasRole('ADMIN')")
+    public String reviewJob(@PathVariable(name = "jobId") String jobId) {
+        System.out.println("UserController -> reviewJob: " + jobId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        userService.reviewJob(username, jobId);
+        return "under reviewed";
     }
 }

@@ -76,6 +76,7 @@ public class UserService {
         }
     }
 
+
     public void deleteJob(String jobId) {
         List<User> users = userRepository.findAll();
         for (User user: users) {
@@ -87,7 +88,43 @@ public class UserService {
             if (user.getPostedJobs() != null) postedJobs = user.getPostedJobs();
             postedJobs.remove(jobId);
             user.setPostedJobs(postedJobs);
+            List<String> reviewedJobs = new ArrayList<>();
+            if (user.getReviewedJobs() != null) reviewedJobs = user.getReviewedJobs();
+            reviewedJobs.remove(jobId);
+            user.setReviewedJobs(reviewedJobs);
             userRepository.save(user);
+        }
+    }
+
+    public void reviewJob(String username, String jobId) {
+        User user = userRepository.findByUsername(username);
+        Job job = jobRepository.findJobById(jobId);
+        if (user != null && job != null) {
+            // user
+            List<String> reviewedJobs = new ArrayList<>();
+            if (user.getReviewedJobs() != null) reviewedJobs = user.getReviewedJobs();
+            if (!reviewedJobs.contains(jobId)) reviewedJobs.add(jobId);
+            user.setReviewedJobs(reviewedJobs);
+            userRepository.save(user);
+            //job
+            job.setUnderReview(true);
+            jobRepository.save(job);
+        }
+    }
+
+    public void reviewJobPass(String username, String jobId) {
+        User user = userRepository.findByUsername(username);
+        Job job = jobRepository.findJobById(jobId);
+
+        if (user != null && job != null) {
+            List<String> reviewedJobs = new ArrayList<>();
+            if (user.getReviewedJobs() != null) reviewedJobs = user.getReviewedJobs();
+            reviewedJobs.remove(jobId);
+            user.setReviewedJobs(reviewedJobs);
+            userRepository.save(user);
+            // job
+            job.setUnderReview(false);
+            jobRepository.save(job);
         }
     }
 }

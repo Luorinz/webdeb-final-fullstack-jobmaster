@@ -49,13 +49,4 @@ public class JobServiceTest {
 
 
 
-    @Test
-    public void testMarkJobAsReviewedOrUnreviewed() {
-        jobService.markJobAsUnderReviewd("1522485004");
-        Job job = jobService.getJob("1522485004");
-        Assert.assertTrue(job.getUnderReview());
-        jobService.markJobAsReviewdPassd("1522485004");
-        job = jobService.getJob("1522485004");
-        Assert.assertFalse(job.getUnderReview());
-    }
 }
