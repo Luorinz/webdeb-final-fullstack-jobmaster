@@ -45,4 +45,9 @@ public class JobServiceTest {
             System.out.println(job);
         }
     }
+
+    @Test
+    public void testGetJobsByUsername() {
+
+    }
 }

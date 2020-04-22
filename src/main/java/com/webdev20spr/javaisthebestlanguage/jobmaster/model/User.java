@@ -30,6 +30,8 @@ public class User {
     private String thumbnail;
     private String description;
 
+    private List<String> savedJobs;
+
     public User(JwtUserDetail userDetail) {
         this.username = userDetail.getUsername();
         this.password = userDetail.getPassword();

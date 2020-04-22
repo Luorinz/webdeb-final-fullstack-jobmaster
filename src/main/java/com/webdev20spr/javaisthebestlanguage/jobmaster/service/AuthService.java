@@ -46,7 +46,7 @@ public class AuthService{
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = userDetail.getPassword();
         userDetail.setPassword(encoder.encode(rawPassword));
-        userRepository.insert(new User(userDetail));
+        userRepository.save(new User(userDetail));
         return userDetail;
     }
 

@@ -2,11 +2,9 @@ package com.webdev20spr.javaisthebestlanguage.jobmaster.controller;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.JobService;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,8 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/job")
 public class JobController {
+
     @Autowired
     private JobService jobService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/search/localjob")
     public List<Job> getAllLocalJobs() {
@@ -36,5 +38,15 @@ public class JobController {
         return jobService.getJobsFromAPI(keyword);
     }
 
+    @PostMapping("/save/{jobId}")
+    public String saveJob(@PathVariable(name = "jobId") String jobId) {
+        return "saved";
+    }
+
+
+//    @GetMapping("/get/{userId}")
+//    public List<Job> searchAPIJobs(@PathVariable(name = "userId") String userId) {
+//        return
+//    }
 
 }

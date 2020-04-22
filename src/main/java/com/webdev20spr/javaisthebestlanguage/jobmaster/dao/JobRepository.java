@@ -15,7 +15,11 @@ import java.util.List;
 @Repository
 public interface JobRepository extends MongoRepository<Job, String> {
     List<Job> findAll();
-    Job insert(Job job);
-    @Query(value="{$text:{$search:\"$regex:?0\"}}")
+
+    Job findJobById(String id);
+
+    Job save(Job job);
+
+    @Query(value = "{$text:{$search:\"$regex:?0\"}}")
     List<Job> searchJob(String keyword);
 }

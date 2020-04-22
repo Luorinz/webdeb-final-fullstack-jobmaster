@@ -20,6 +20,8 @@ public class JobService {
     @Autowired
     private JobRepository jobRepository;
 
+
+
     public List<Job> getJobsFromDatabase() {
         return jobRepository.findAll();
     }
@@ -36,7 +38,7 @@ public class JobService {
     }
 
     public Job addJob(Job job) {
-        return jobRepository.insert(job);
+        return jobRepository.save(job);
     }
 
     public List<Job> searchLocalJobs(String keyword) {
