@@ -1,6 +1,8 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.service;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.JobRepository;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.dao.UserRepository;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.User;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.response.APIResponse;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
 import org.springframework.beans.factory.annotation.Autowired;

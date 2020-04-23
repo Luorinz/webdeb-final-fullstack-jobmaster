@@ -21,29 +21,29 @@ public class JobRepositoryTest {
     @Autowired
     private JobRepository jobRepository;
 
-    @Test
-    public void addJob() {
-        Job job = new Job();
-        job.setTitle("testJob");
-//        job.setCompany("testCompany");
-        job.setDescription("test");
-        jobRepository.save(job);
-    }
-
-    @Test
-    public void testGetAllJobs() {
-        addJob();
-        jobRepository.findAll();
-    }
-
-
-    @Test
-    public void testInsertJob() {
-
-    }
-
-    @Test
-    public void testRemoveJob() {
-//        jobRepository.deleteJobById("5ea0c858a4283469016068e4");
-    }
+//    @Test
+//    public void addJob() {
+//        Job job = new Job();
+//        job.setTitle("testJob");
+////        job.setCompany("testCompany");
+//        job.setDescription("test");
+//        jobRepository.save(job);
+//    }
+//
+//    @Test
+//    public void testGetAllJobs() {
+//        addJob();
+//        jobRepository.findAll();
+//    }
+//
+//
+//    @Test
+//    public void testInsertJob() {
+//
+//    }
+//
+//    @Test
+//    public void testRemoveJob() {
+////        jobRepository.deleteJobById("5ea0c858a4283469016068e4");
+//    }
 }

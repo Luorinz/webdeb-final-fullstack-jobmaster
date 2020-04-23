@@ -20,18 +20,18 @@ public class UserServiceTest {
     UserService userService;
 
 
-    @Test
-    public void testSaveJob() {
-        userService.saveJob("test", "1522485004");
-    }
-
-    @Test
-    public void testGetJobsByUsername() {
-        List<Job> jobs = userService.getSavedJobsByUsername("test");
-        System.out.println(jobs.size());
-        for (Job job: jobs) {
-            System.out.println(job);
-        }
-
-    }
+//    @Test
+//    public void testSaveJob() {
+//        userService.saveJob("test", "1522485004");
+//    }
+//
+//    @Test
+//    public void testGetJobsByUsername() {
+//        List<Job> jobs = userService.getSavedJobsByUsername("test");
+//        System.out.println(jobs.size());
+//        for (Job job: jobs) {
+//            System.out.println(job);
+//        }
+//
+//    }
 }

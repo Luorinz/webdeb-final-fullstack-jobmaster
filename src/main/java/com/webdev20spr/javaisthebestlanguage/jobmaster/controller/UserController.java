@@ -1,6 +1,7 @@
 package com.webdev20spr.javaisthebestlanguage.jobmaster.controller;
 
 import com.webdev20spr.javaisthebestlanguage.jobmaster.model.Job;
+import com.webdev20spr.javaisthebestlanguage.jobmaster.model.User;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.JobService;
 import com.webdev20spr.javaisthebestlanguage.jobmaster.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,12 @@ public class UserController {
     @Autowired
     private JobService jobService;
 
+
+    @GetMapping("username/{username}")
+    public User getUser(@PathVariable(name = "username") String username) {
+        System.out.println("UserController -> getUser: " + username);
+        return userService.getUser(username);
+    }
 
     @PostMapping("/{jobId}")
     public String saveJob(@PathVariable(name = "jobId") String jobId) {

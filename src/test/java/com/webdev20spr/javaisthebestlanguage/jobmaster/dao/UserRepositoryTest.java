@@ -18,10 +18,10 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Test
-    public void testGetUserByUsername() {
-        System.out.println(userRepository.findByUsername("user1"));
-    }
+//    @Test
+//    public void testGetUserByUsername() {
+//        System.out.println(userRepository.findByUsername("user1"));
+//    }
 
     @Test
     public void testInsertUser() {

@@ -4,9 +4,11 @@ server:
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27017
+#      host: localhost
+#      port: 27017
       database: jobmaster
+      uri: mongodb+srv://anda:123@cluster0-f4nnl.mongodb.net/test?retryWrites=true&w=majority
+
 
 jwt:
   header: Authorization
