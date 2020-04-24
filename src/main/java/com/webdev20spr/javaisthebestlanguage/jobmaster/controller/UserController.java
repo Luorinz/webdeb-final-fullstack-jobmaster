@@ -84,7 +84,7 @@ public class UserController {
         return job;
     }
 
-    @PutMapping("/updatejob/{jobId}")
+    @PutMapping("/updatejob")
     @PreAuthorize(value = "hasRole('ADV_USER') || hasRole('ADMIN')")
     public Job updateJob(@RequestBody Job jobRequest) {
         System.out.println("UserController -> UpdateJob: " + jobRequest);
