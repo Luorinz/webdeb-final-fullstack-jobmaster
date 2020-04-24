@@ -14,6 +14,7 @@ import java.util.List;
  * 2020-4-7
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/job")
 public class JobController {
 
