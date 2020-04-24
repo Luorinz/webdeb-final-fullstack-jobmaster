@@ -63,12 +63,20 @@ public class UserController {
         return userService.getSavedJobsByUsername(username);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update/role")
     @PreAuthorize(value = "hasRole('ADMIN')")
     public String updateUserRole(@RequestParam(name = "username") String username,@RequestParam(name = "role") String role) {
         System.out.println("UserController -> updateUserRole");
         userService.updateUserRole(username, role);
         return "updated";
+    }
+    @PutMapping("/update")
+    public User updateUserRole(@RequestBody User user) {
+        System.out.println("UserController -> updateUserRole");
+        if (user == null) {
+            return null;
+        }
+        return userService.updateUser(user);
     }
 
     @PostMapping("/post")

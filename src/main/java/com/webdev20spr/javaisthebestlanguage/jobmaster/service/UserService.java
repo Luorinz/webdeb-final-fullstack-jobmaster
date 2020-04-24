@@ -67,6 +67,12 @@ public class UserService {
 
     }
 
+    public User updateUser(User userRequest) {
+        User user = userRepository.findByUsername(userRequest.getUsername());
+        if (user == null) return null;
+        return userRepository.save(userRequest);
+    }
+
     public void updateUserRole(String username, String role) {
         User user = userRepository.findByUsername(username);
         if (user != null) {
