@@ -28,10 +28,23 @@ public class UserService {
 
     public void saveJob(String username, String jobId) {
         User user = userRepository.findByUsername(username);
-        if (user != null) {
+        Job job = jobRepository.findJobById(jobId);
+        if (user != null && job != null) {
             List<String> jobIds = new ArrayList<>();
             if (user.getSavedJobs() != null) jobIds = user.getSavedJobs();
             if (!jobIds.contains(jobId)) jobIds.add(jobId);
+            user.setSavedJobs(jobIds);
+            userRepository.save(user);
+        }
+    }
+
+    public void unsaveJob(String username, String jobId) {
+        User user = userRepository.findByUsername(username);
+        Job job = jobRepository.findJobById(jobId);
+        if (user != null && job != null) {
+            List<String> jobIds = new ArrayList<>();
+            if (user.getSavedJobs() != null) jobIds = user.getSavedJobs();
+            jobIds.remove(jobId);
             user.setSavedJobs(jobIds);
             userRepository.save(user);
         }
@@ -74,6 +87,12 @@ public class UserService {
             user.setPostedJobs(postedJobs);
             userRepository.save(user);
         }
+    }
+
+    public Job updateJob(Job jobRequest) {
+        Job job = jobRepository.findJobById(jobRequest.getId());
+        if (job == null) return null;
+        return jobRepository.save(jobRequest);
     }
 
 

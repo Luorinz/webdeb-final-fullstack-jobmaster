@@ -34,7 +34,7 @@ public class UserController {
         return userService.getUser(username);
     }
 
-    @PostMapping("/{jobId}")
+    @PostMapping("save/{jobId}")
     public String saveJob(@PathVariable(name = "jobId") String jobId) {
         System.out.println("UserController -> saveJob: " + jobId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -42,6 +42,16 @@ public class UserController {
         if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
         userService.saveJob(username, jobId);
         return "saved";
+    }
+
+    @PostMapping("unsave/{jobId}")
+    public String unsaveJob(@PathVariable(name = "jobId") String jobId) {
+        System.out.println("UserController -> saveJob: " + jobId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        userService.unsaveJob(username, jobId);
+        return "unsaved";
     }
 
     @GetMapping("/jobs")
@@ -72,6 +82,13 @@ public class UserController {
         userService.postJob(username, job.getId());
         userService.reviewJob(username, job.getId());
         return job;
+    }
+
+    @PutMapping("/updatejob/{jobId}")
+    @PreAuthorize(value = "hasRole('ADV_USER') || hasRole('ADMIN')")
+    public Job updateJob(@RequestBody Job jobRequest) {
+        System.out.println("UserController -> UpdateJob: " + jobRequest);
+        return userService.updateJob(jobRequest);
     }
 
     @DeleteMapping("/delete/{jobId}")
