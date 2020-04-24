@@ -58,7 +58,7 @@ public class AuthController {
 //            return ResultJson.failure(ResultCode.BAD_REQUEST);
 //        }
         System.out.println("register" + user);
-        JwtUserDetail userDetail = new JwtUserDetail(user.getUsername(), user.getPassword(), user.getEmail(), "ROLE_USER");
+        JwtUserDetail userDetail = new JwtUserDetail(user.getUsername(), user.getPassword(), user.getEmail(), user.getRole());
         return authService.register(userDetail);
     }
 
