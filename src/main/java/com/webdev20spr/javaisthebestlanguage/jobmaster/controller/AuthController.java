@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
-@CrossOrigin
+@CrossOrigin(allowCredentials = "true")
 @RequestMapping("/auth")
 public class AuthController {
     @Value("${jwt.header}")
