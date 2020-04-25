@@ -74,10 +74,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/auth/login", "/auth/register", "/error/**", "/job/search/**", "/user/username/**").permitAll()
                 .anyRequest().authenticated();
 
-        httpSecurity.headers().cacheControl();
 
-        httpSecurity
-                .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.
+                addFilterBefore(corsFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .headers().cacheControl();
+    }
+
+    @Bean
+    public CorsFilter corsFilter() throws Exception {
+        return new CorsFilter();
     }
 
     @Override
