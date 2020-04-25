@@ -43,8 +43,10 @@ public class JobService {
         return jobRepository.findJobById(jobId);
     }
 
-    public Job postJob(Job job) {
-        return jobRepository.save(job);
+    public Job postJob(Job jobRequest) {
+        Job job = jobRepository.findJobById(jobRequest.getId());
+        if (job != null) return job;
+        return jobRepository.save(jobRequest);
     }
 
     public List<Job> searchLocalJobs(String keyword) {

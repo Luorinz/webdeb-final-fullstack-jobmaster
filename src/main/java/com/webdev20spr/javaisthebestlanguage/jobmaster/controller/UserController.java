@@ -44,6 +44,17 @@ public class UserController {
         return "saved";
     }
 
+    @PostMapping("save")
+    public String saveJobFromApi(@RequestBody Job jobRequest) {
+        System.out.println("UserController -> saveJobFromApi: " + jobRequest);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username == null || username.length() == 0) throw new RuntimeException("cannot get logged in user");
+        Job job = jobService.postJob(jobRequest);
+        userService.saveJob(username, job.getId());
+        return "saved";
+    }
+
     @PostMapping("unsave/{jobId}")
     public String unsaveJob(@PathVariable(name = "jobId") String jobId) {
         System.out.println("UserController -> saveJob: " + jobId);
