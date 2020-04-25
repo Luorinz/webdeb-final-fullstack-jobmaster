@@ -71,8 +71,8 @@ public class UserController {
         return "updated";
     }
     @PutMapping("/update")
-    public User updateUserRole(@RequestBody User user) {
-        System.out.println("UserController -> updateUserRole");
+    public User updateUser(@RequestBody User user) {
+        System.out.println("UserController -> updateUser");
         if (user == null) {
             return null;
         }
