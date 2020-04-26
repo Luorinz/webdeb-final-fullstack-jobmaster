@@ -98,7 +98,7 @@ class UserLogin extends React.Component{
                       <MDBModalFooter>
                         <div className="font-weight-light">
                           <MDBNavLink to="/register">Not a member? Sign Up</MDBNavLink>
-                          <MDBNavLink to="/AdminLogin">Login as Admin</MDBNavLink>
+                          {/*<MDBNavLink to="/AdminLogin">Login as Admin</MDBNavLink>*/}
                         </div>
                       </MDBModalFooter>
                     </MDBCardBody>
